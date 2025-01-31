@@ -1,0 +1,102 @@
+openapi: 3.0.0
+info:
+  description: API for managing learners
+  version: "1.0.0"
+  title: Learners API
+paths:
+  /learners:
+    get:
+      summary: Get all learners
+      responses:
+        '200':
+          description: A list of learners
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Learner'
+    post:
+      summary: Create a new learner
+      requestBody:
+        description: Learner object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Learner'
+      responses:
+        '201':
+          description: Learner created
+  /learners/{id}:
+    get:
+      summary: Get a learner by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Learner ID
+      responses:
+        '200':
+          description: A learner object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Learner'
+        '404':
+          description: Learner not found
+    put:
+      summary: Update a learner by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Learner ID
+      requestBody:
+        description: Updated learner object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Learner'
+      responses:
+        '200':
+          description: Learner updated
+        '404':
+          description: Learner not found
+    delete:
+      summary: Delete a learner by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Learner ID
+      responses:
+        '204':
+          description: Learner deleted
+        '404':
+          description: Learner not found
+components:
+  schemas:
+    Learner:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: bosy
+        major:
+          type: string
+          example: DSAI
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/BosyAyman202202076/SWElab3/1.0.0
