@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='color.css') }}">
+</head>
+<body>
+  <div id="form">
+    <h2 class="header">Form</h2>
+
+    <div>
+      <form action="/" method="POST">
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="number" id="phone" name="phone" placeholder="Phone number" required>
+        <button type="submit">Submit</button>
+    </form>  
+     
+    
+  {% if email is not none and name is not none and phone is not none %}
+    <p>Email: {{ email }}<br>Name: {{ name }}<br>Phone: {{ phone }}</p>
+  {% endif %}
+    </div>
+  </div>
+</body>
+</html>
